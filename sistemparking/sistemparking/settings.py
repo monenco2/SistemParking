@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    'rest_framework',
 
     'apps.facturacion',
     'apps.horaparqueo',
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'apps.rol',
     'apps.usuarios',
     'apps.vehiculo',
-    'rest_framework',
 ]
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
