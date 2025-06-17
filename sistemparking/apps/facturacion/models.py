@@ -6,6 +6,4 @@ class Facturacion(models.Model):
     vehiculo_id = models.TextField("vehiculo")
     valor_pagar = models.TextField("valor")
 
-
-    def __str__ (self):
-            return f'{self.metodo_pago}'
+    
