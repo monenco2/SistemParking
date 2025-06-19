@@ -1,0 +1,98 @@
+<html>
+<title>Sistem Parking</title>
+<meta charset="utf-8">
+<script src="js/jquery.js"></script>
+</head>
+
+<body bgcolor="black">
+    <center>
+        <img src="imagenes/esta es.png" height="200" width="200" />
+        <br><br>
+        <font size="8" color="purple">Ingreso del usuario<b><i>
+                    <br><br>
+        </font>
+        <font size="6" color="silver">¡Te damos la bienvenida de nuevo!<i>
+                <br><br>
+                <label>Nombre</label><i></i>
+                <br>
+                <input type="email" id="Nombre" placeholder="Ingrese su Nombre">
+                <br>
+                <label>Apellido</label><i></i>
+                <br>
+                <input type="email" id="Apellido" placeholder="Ingrese su Apellido">
+                <br>
+                <label>Correo</label><i>
+                    <br>
+                    <input type="email" id="email" placeholder="Ingrese su correo">
+                    <br><br>
+                    <label>Contraseña</label><i>
+                        <br>
+                        <input type="password" id="password" placeholder="Ingrese su contrasena">
+                        <br><br>
+                        <button type="button" id="ingresar" class="btn btn-primary btn-lg">Ingresar</button>
+                        <br><br>
+                        <div id="resultado"></div>
+                        <font size="5">Continue con:</font><i>
+                            <br>
+                            <button type="submit">Google</button> <button type="submit">Facebook</button>
+                            <form>
+
+    </center>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            data: datos,
+            type: "POST",
+            url: "http://127.0.0.1:8000/api/rol/",
+            success: function (valor) {
+
+            }
+        });
+
+        $("#ingresar").click(function () {
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var Nombre = $("#Nombre").val();
+            var Apellido = $("#Apellido").val();
+
+            var datos = {
+                email: email,
+            };
+
+            var datos = {
+                password: password,
+            };
+
+            var datos = {
+                Nombre: Nombre,
+            };
+
+            var datos = {
+                Apellido: Apellido,
+            };
+
+
+
+
+
+
+
+
+
+
+
+            if (email == "florezechavarriav@gmail.com" && password == 123) {
+                parent.location = 'file:///C:/Users/Usuario/Desktop/Sistem%20Parking/dashboard.html?#';
+            } else {
+                alert("email y contraseña invalido")
+
+            }
+        })
+
+    })
+
+</script>
