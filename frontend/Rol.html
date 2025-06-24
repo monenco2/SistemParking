@@ -1,13 +1,11 @@
 <html>
 <title>Sistem Parking</title>
 <meta charset="utf-8">
-<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 </head>
 
 <body bgcolor="black">
     <center>
-        <img src="imagenes/esta es.png" height="200" width="200" />
-        <br><br>
         <font size="8" color="purple">Ingreso del usuario<b><i>
                     <br><br>
         </font>
@@ -45,7 +43,7 @@
 <script>
     $(document).ready(function () {
         $.ajax({
-            data: datos,
+            data: "datos",
             type: "POST",
             url: "http://127.0.0.1:8000/api/rol/",
             success: function (valor) {
@@ -60,33 +58,24 @@
             var Apellido = $("#Apellido").val();
 
             var datos = {
-                email: email,
+                "email": email,
             };
 
             var datos = {
-                password: password,
+                "password": password,
             };
 
             var datos = {
-                Nombre: Nombre,
+                "Nombre": Nombre,
             };
 
             var datos = {
-                Apellido: Apellido,
+                "Apellido": Apellido,
             };
-
-
-
-
-
-
-
-
-
 
 
             if (email == "florezechavarriav@gmail.com" && password == 123) {
-                parent.location = 'file:///C:/Users/Usuario/Desktop/Sistem%20Parking/dashboard.html?#';
+                parent.location = 'file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/dashboard.html';
             } else {
                 alert("email y contraseña invalido")
 

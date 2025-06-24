@@ -6,3 +6,6 @@ class Vehiculo(models.Model):
     usuario_id = models.TextField("usuario")
     fecha_ingreso = models.TextField("fecha")
     servicio_id = models.TextField("servicio")
+
+    def __str__(self):
+        return f'{self.placa}'

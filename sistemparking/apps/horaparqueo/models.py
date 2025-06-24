@@ -4,3 +4,6 @@ from django.db import models
 class Horaparqueo(models.Model):
     precio = models.TextField("precio")
     servicio_id = models.TextField("servicio")
+
+    def __str__(self):
+        return f'{self.precio}'
