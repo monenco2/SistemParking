@@ -6,7 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import *
 
-class FacturacionViewset(viewsets.ModelViewSet):
+class VehiculoViewset(viewsets.ModelViewSet):
 
     queryset = Vehiculo.objects.all()
     serializer_class = VehiculoSerializer

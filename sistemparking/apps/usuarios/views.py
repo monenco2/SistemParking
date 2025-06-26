@@ -6,7 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import *
 
-class FacturacionViewset(viewsets.ModelViewSet):
+class UsuariosViewset(viewsets.ModelViewSet):
 
     queryset = Usuarios.objects.all()
     serializer_class = UsuariosSerializer

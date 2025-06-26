@@ -1,0 +1,71 @@
+<html>
+<title>Sistem Parking</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body bgcolor="black">
+    <center>
+        <font size="8" color="purple">Ingreso del usuario<b><i>
+                    <br><br>
+        </font>
+        <font size="6" color="silver">¡Te damos la bienvenida de nuevo!<i>
+                <br><br>
+                <label>Nombre</label><i></i>
+                <br>
+                <input type="nombre" id="nombre" placeholder="Ingrese su Nombre">
+                <br>
+                <label>Apellido</label><i></i>
+                <br>
+                <input type="apellido" id="apellido" placeholder="Ingrese su Apellido">
+                <br>
+                <label>Correo</label><i>
+                    <br>
+                    <input type="email" id="email" placeholder="Ingrese su correo">
+                    <br><br>
+                    <label>Contraseña</label><i>
+                        <br>
+                        <input type="password" id="password" placeholder="Ingrese su contrasena">
+                        <br><br>
+                        <button type="button" id="ingresar" class="btn btn-primary btn-lg">Ingresar</button>
+                        <br><br>
+                        <div id="resultado"></div>
+                        <font size="5">Continue con:</font><i>
+                            <br>
+                            <button type="submit">Google</button> <button type="submit">Facebook</button>
+                            <form>
+
+    </center>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#ingresar").click(function(){
+          
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var nombre = $("#nombre").val();
+            var apellido = $("#apellido").val();
+            var datos = {
+             "email": email,
+             "password":password,
+             "nombre":nombre,
+             "apellido":apellido,
+            }
+
+        $.ajax({
+            data: datos,
+            type: "POST",
+            url: "http://127.0.0.1:8000/api/usuarios/",
+            success: function (valor) {
+                 parent.location = 'rol.html';
+            },
+        });
+
+     });
+
+    });
+
+</script>

@@ -1,0 +1,73 @@
+<html>
+<title>Sistem Parking</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body bgcolor="black">
+    <center>
+        <br>
+        <font size="8" color="purple">Datos del usuario<b><i>
+                    <br><br>
+        </font>
+        <br><br>
+        <font size="5" color="silver">
+            <label>Nombre</label><i>
+                <br>
+                <font size="5" color="silver">
+                    <input type="nombre" id="nombre" placeholder="Tu nombre completo">
+                    <br><br>
+                    <label>Cedula</label><i>
+                        <br>
+                        <input type="cedula" id="cedula" placeholder="Tu cedula de ciudadania">
+                        <br><br>
+                        <font size="5" color="silver"></font>
+                        <label>Numero</label><i>
+                        <br>
+                        <input type="numero" id="numero" placeholder="Tu numero de celular">
+                        <br><br>
+                        <font size="5" color="silver"></font>
+                        <label>Placa</label><i>
+                        <br>
+                        <input type="placa" id="placa" placeholder="Placa de tu vehiculo">
+                        <br><br>
+                        <button type="button" id="Continue" class="btn btn-primary btn-lg">Continue</button>
+                        <br><br>
+                        <font size="5" color="silver"></font><i>
+                         <form>
+    </center>
+</body>
+
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        $("#Continue").click(function () {
+            
+            var nombre = $("#nombre").val();
+            var cedula = $("#cedula").val();
+            var numero = $("#numero").val();
+            var placa = $("#placa").val();
+            var datos = {
+            "nombre": nombre,
+            "cedula": cedula,
+            "numero": numero,
+            "placa": placa,
+            
+            }
+            
+        $.ajax({
+            data: datos,
+            type: "POST",
+            url: "http://127.0.0.1:8000/api/vehiculo/",
+            success: function (valor) {
+                parent.location = "file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/dashboard.html";
+
+            }
+        });
+
+        });
+
+    });
+</script>
