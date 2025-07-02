@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Sistema Parking - Datos del Usuario</title>
+    <title>Sistema Parking</title>
     <style>
         :root {
             --black: #121212;
@@ -56,7 +56,7 @@
             font-size: 1.1rem;
         }
         
-        input {
+        input, select {
             width: 100%;
             padding: 12px;
             background-color: var(--medium-gray);
@@ -67,7 +67,7 @@
             box-sizing: border-box;
         }
         
-        input:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: var(--purple-light);
             box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.3);
@@ -91,55 +91,121 @@
             background-color: var(--purple-light);
             transform: translateY(-2px);
         }
+
+        .timer-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .timer-display {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .timer-controls {
+            display: flex;
+        }
+
+        .timer-btn {
+            padding: 8px 12px;
+            background-color: var(--purple-dark);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .timer-btn:hover {
+            background-color: var(--purple-medium);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Datos del usuario</h1>
+        <h1 class="title">Hora de Parqueo</h1>
         
         <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" placeholder="Tu nombre completo">
+            <label for="lugar">Lugar</label>
+            <select id="lugar">
+                <option value="">Selecciona tu lugar</option>
+                <option value="Piso I">Piso I</option>
+                <option value="Piso II">Piso II</option>
+                <option value="Piso III">Piso III</option>
+            </select>
         </div>
         
         <div class="form-group">
-            <label for="cedula">Cédula</label>
-            <input type="text" id="cedula" placeholder="Tu cédula de ciudadanía">
+            <label for="tiempo">Tiempo</label>
+            <div class="timer-container">
+                <input type="text" id="tiempo" class="timer-display" placeholder="00:00:00" readonly>
+                <div class="timer-controls">
+                    <button type="button" class="timer-btn" id="startTimer">Iniciar</button>
+                    <button type="button" class="timer-btn" id="stopTimer">Detener</button>
+                    <button type="button" class="timer-btn" id="resetTimer">Reiniciar</button>
+                </div>
+            </div>
         </div>
-        
-        <div class="form-group">
-            <label for="numero">Número</label>
-            <input type="text" id="numero" placeholder="Tu número de celular">
-        </div>
-        
-        <div class="form-group">
-            <label for="placa">Placa</label>
-            <input type="text" id="placa" placeholder="Placa de tu vehículo">
-        </div>
-        
+    
         <button type="button" id="Continue" class="btn">Continuar</button>
     </div>
 
     <script src="js/jquery.js"></script>
     <script>
         $(document).ready(function () {
+            // Timer functionality
+            let timer;
+            let seconds = 0;
+            let isRunning = false;
+
+            function updateTimerDisplay() {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+                
+                $("#tiempo").val(
+                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+                );
+            }
+
+            $("#startTimer").click(function() {
+                if (!isRunning) {
+                    isRunning = true;
+                    timer = setInterval(function() {
+                        seconds++;
+                        updateTimerDisplay();
+                    }, 1000);
+                }
+            });
+
+            $("#stopTimer").click(function() {
+                if (isRunning) {
+                    clearInterval(timer);
+                    isRunning = false;
+                }
+            });
+
+            $("#resetTimer").click(function() {
+                clearInterval(timer);
+                seconds = 0;
+                isRunning = false;
+                updateTimerDisplay();
+            });
+
+            // Continue button functionality
             $("#Continue").click(function () {
-                var nombre = $("#nombre").val();
-                var cedula = $("#cedula").val();
-                var numero = $("#numero").val();
-                var placa = $("#placa").val();
+                var tiempo = $("#tiempo").val();
+                var lugar = $("#lugar").val();
                 
                 var datos = {
-                    "nombre": nombre,
-                    "cedula": cedula,
-                    "numero": numero,
-                    "placa": placa
+                    "tiempo": tiempo,
+                    "lugar": lugar,
                 }
                 
                 $.ajax({
                     data: datos,
                     type: "POST",
-                    url: "http://127.0.0.1:8000/api/vehiculo/",
+                    url: "http://127.0.0.1:8000/api/horaparqueo/",
                     success: function (valor) {
                         parent.location = "file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/menu.html";
                     }

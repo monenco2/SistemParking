@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Gestión</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --purple-dark: #4a148c;
+            --purple-medium: #7b1fa2;
+            --purple-light: #9c27b0;
+            --black: #121212;
+            --gray-dark: #1e1e1e;
+            --gray-light: #2d2d2d;
+        }
+        
+        body {
+            background-color: var(--black);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .sidebar {
+            min-height: 100vh;
+            background-color: var(--gray-dark);
+            width: 250px;
+            position: fixed;
+            padding-top: 10px;
+            border-right: 1px solid var(--purple-medium);
+        }
+        
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 12px 20px;
+            margin: 3px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar .nav-link:hover {
+            color: white;
+            background-color: var(--purple-medium);
+            transform: translateX(5px);
+        }
+        
+        .sidebar .nav-link.active {
+            background-color: var(--purple-light);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .brand {
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            border-bottom: 1px solid var(--purple-dark);
+            background-color: var(--gray-dark);
+            text-align: center;
+        }
+        
+        .search-container {
+            padding: 15px;
+            background-color: var(--gray-dark);
+        }
+        
+        .form-control {
+            background-color: var(--gray-light);
+            border: 1px solid var(--purple-dark);
+            color: white;
+        }
+        
+        .form-control:focus {
+            background-color: var(--gray-light);
+            color: white;
+            border-color: var(--purple-light);
+            box-shadow: 0 0 0 0.25rem rgba(156, 39, 176, 0.25);
+        }
+        
+        .btn-outline-success {
+            color: var(--purple-light);
+            border-color: var(--purple-light);
+        }
+        
+        .btn-outline-success:hover {
+            background-color: var(--purple-medium);
+            border-color: var(--purple-medium);
+        }
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 30px;
+            background-color: var(--black);
+            min-height: 100vh;
+        }
+        
+        .bottom-menu {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 0 10px;
+        }
+        
+        .bottom-menu .nav-link {
+            margin-bottom: 0;
+        }
+        
+        .icon {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">Sistema de Gestión</div>
+        
+        <div class="search-container">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+        
+        <ul class="nav flex-column mt-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="usuarios.html">
+                    <span class="icon">🏠</span>Inicio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="servicio.html">
+                    <span class="icon">📊</span>Servicios
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="facturacion.html">
+                    <span class="icon">💵</span>Facturación
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="horaparqueo.html">
+                    <span class="icon">⌚</span>Horas Parqueo
+                </a>
+            </li>
+            
+            <div class="bottom-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="icon">⚙️</span>Configuración
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2 style="color: #bb86fc;">Bienvenido al Sistema</h2>
+        <p>Seleccione una opción del menú lateral para comenzar.</p>
+        
+        <div class="mt-4" style="color: #9e9e9e;">
+            <small>Sistema de gestión vehicular - Versión 1.0</small>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

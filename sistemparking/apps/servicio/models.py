@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Servicio(models.Model):
-    nombre = models.TextField("nombre")
+    servicio = models.TextField("servicio", null=True)
 
     def __str__(self):
         return f'{self.nombre}'

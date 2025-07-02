@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Sistema de Facturación</title>
+    <title>Sistema Parking - Verificación</title>
     <style>
         :root {
             --black: #121212;
@@ -20,38 +20,39 @@
             color: var(--text-light);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
         }
         
         .container {
             background-color: var(--dark-gray);
             border-radius: 10px;
             padding: 30px;
-            width: 100%;
-            max-width: 500px;
+            width: 90%;
+            max-width: 450px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--purple-medium);
+            text-align: center;
         }
         
         .title {
             color: var(--purple-light);
-            text-align: center;
             font-size: 2.2rem;
             margin-bottom: 30px;
             font-weight: 600;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-align: left;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--text-gray);
             font-size: 1.1rem;
         }
@@ -91,70 +92,42 @@
             background-color: var(--purple-light);
             transform: translateY(-2px);
         }
-        
-        .help-section {
-            text-align: center;
-            margin-top: 40px;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            padding-top: 20px;
-            border-top: 1px solid var(--medium-gray);
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Facturación</h1>
+        <h1 class="title">Servicios</h1>
         
         <div class="form-group">
-            <label for="metodo_pago">Método de pago</label>
-            <select id="metodo_pago">
-                <option value="">Seleccione su método de pago</option>
-                <option value="Efectivo">Efectivo</option>
-                <option value="Transferencia">Transferencia</option>
+            <label for="servicio">Servicio</label>
+            <select id="servicio">
+                <option value="">Seleccione su servicio</option>
+                <option value="Seguridad">Seguridad</option>
+                <option value="Exclusividad">Exclusividad</option>
+                <option value="Lavadero">Lavadero</option>
             </select>
         </div>
         
-        <div class="form-group">
-            <label for="placa">Placa</label>
-            <input type="text" id="placa" placeholder="Ingrese su placa">
-        </div>
-        
-        <div class="form-group">
-            <label for="tiempo">Tiempo</label>
-            <input type="text" id="tiempo" placeholder="Tiempo que estuvo">
-        </div>
-        
-        <button class="btn" type="button">Valor a pagar 💰</button>
-        
-        <div class="help-section">
-            ¿Necesitas ayuda? Contacta a nuestro soporte
-        </div>
+        <button type="button" id="siguiente" class="btn">Siguiente</button>
     </div>
-</body>
 
- <script src="js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
     <script>
         $(document).ready(function () {
-            $("#Valor a pagar 💰").click(function(){
-                var placa = $("#placa").val();
-                var tiempo = $("#tiempo").val();
-                
+            $("#siguiente").click(function(){
+                var servicio = $("#servicio").val();
                 var datos = {
-                    "placa": placa,
-                    "tiempo": tiempo,
-
+                    "servicio": servicio
                 }
 
                 $.ajax({
                     data: datos,
                     type: "POST",
-                    url: "http://127.0.0.1:8000/api/facturacion/",
+                    url: "http://127.0.0.1:8000/api/servicio/",
                     success: function (valor) {
-                        parent.location = 'file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/pagofinal.html'
-                   
-                    }
-                 });
+                        parent.location = 'registroexitoso.html';
+                    },
+                });
             });
         });
     </script>
