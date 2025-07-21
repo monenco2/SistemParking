@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.rol',
     'apps.usuarios',
     'apps.vehiculo',
+    'apps.pagofinal',
 ]
 
 # REST_FRAMEWORK = {

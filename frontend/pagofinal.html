@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Pago Final</title>
+    <title>Pago Final</title>
     <style>
         :root {
             --black: #121212;
@@ -291,30 +291,26 @@
             </div>
             
             <div class="form-group">
-                <label for="card-number">Número de Tarjeta</label>
-                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
-                <div class="error-message" id="card-number-error">Número de tarjeta inválido</div>
+                <label for="card_number">Número de Tarjeta</label>
+                <input type="text" id="card_number" placeholder="1234 5678 9012 3456" maxlength="19">
             </div>
             
             <div class="form-group">
-                <label for="card-name">Nombre en la Tarjeta</label>
-                <input type="text" id="card-name" placeholder="JUAN PEREZ">
-                <div class="error-message" id="card-name-error">Ingrese el nombre como aparece en la tarjeta</div>
+                <label for="card_name">Nombre en la Tarjeta</label>
+                <input type="text" id="card_name" placeholder="JUAN PEREZ">
             </div>
             
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="expiry-date">Fecha de Expiración</label>
-                        <input type="text" id="expiry-date" placeholder="MM/AA" maxlength="5">
-                        <div class="error-message" id="expiry-date-error">Fecha inválida</div>
+                        <label for="expiry_date">Fecha de Expiración</label>
+                        <input type="text" id="expiry_date" placeholder="MM/AA" maxlength="5">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="cvv">CVV</label>
                         <input type="password" id="cvv" placeholder="123" maxlength="4">
-                        <div class="error-message" id="cvv-error">Código de seguridad inválido</div>
                     </div>
                 </div>
             </div>
@@ -324,8 +320,8 @@
                 <span>Transacción segura - Todos los datos están encriptados</span>
             </div>
             
-            <button class="payment-button" id="credit-pay-button">
-                <i class="fas fa-lock"></i> Pagar con Tarjeta de Crédito
+            <button class="payment-button" id="pagar">
+                <i class="fas fa-lock"></i> Pagar
             </button>
         </div>
         
@@ -338,29 +334,26 @@
             </div>
             
             <div class="form-group">
-                <label for="debit-card-number">Número de Tarjeta</label>
-                <input type="text" id="debit-card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                <label for="debit_card-number">Número de Tarjeta</label>
+                <input type="text" id="debit_card_number" placeholder="1234 5678 9012 3456" maxlength="19">
             </div>
             
             <div class="form-group">
-                <label for="debit-card-name">Nombre en la Tarjeta</label>
-                <input type="text" id="debit-card-name" placeholder="JUAN PEREZ">
-                <div class="error-message" id="debit-card-name-error">Ingrese el nombre como aparece en la tarjeta</div>
+                <label for="debit_card_name">Nombre en la Tarjeta</label>
+                <input type="text" id="debit_card_name" placeholder="JUAN PEREZ">
             </div>
             
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="debit-expiry-date">Fecha de Expiración</label>
-                        <input type="text" id="debit-expiry-date" placeholder="MM/AA" maxlength="5">
-                        <div class="error-message" id="debit-expiry-date-error">Fecha inválida</div>
+                        <label for="debit_expiry_date">Fecha de Expiración</label>
+                        <input type="text" id="debit_expiry_date" placeholder="MM/AA" maxlength="5">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label for="debit-cvv">CVV</label>
-                        <input type="password" id="debit-cvv" placeholder="123" maxlength="4">
-                        <div class="error-message" id="debit-cvv-error">Código de seguridad inválido</div>
+                        <label for="debit_cvv">CVV</label>
+                        <input type="password" id="debit_cvv" placeholder="123" maxlength="4">
                     </div>
                 </div>
             </div>
@@ -370,8 +363,8 @@
                 <span>Transacción segura - Todos los datos están encriptados</span>
             </div>
             
-            <button class="payment-button" id="debit-pay-button">
-                <i class="fas fa-lock"></i> Pagar con Tarjeta de Débito
+            <button class="payment-button" id="pagado">
+                <i class="fas fa-lock"></i> Pagar
             </button>
         </div>
         
@@ -384,92 +377,91 @@
                 <p>También puede optar por pago contra entrega si está disponible en su zona.</p>
             </div>
             
-            <button class="payment-button" id="cash-pay-button">
-                <i class="fas fa-check-circle"></i> Confirmar Pedido con Pago en Efectivo
+            <button class="payment-button" id="pago">
+                <i class="fas fa-check-circle"></i> Pagar
             </button>
         </div>
     </div>
 
+</script>
+
+<script src="js/jquery.js"></script>
     <script>
-        // Cambiar entre métodos de pago
-        const paymentMethods = document.querySelectorAll('.payment-method');
-        const paymentForms = document.querySelectorAll('.payment-form');
-        
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', () => {
-                // Remover clase active de todos los métodos
-                paymentMethods.forEach(m => m.classList.remove('active'));
-                // Añadir clase active al método seleccionado
-                method.classList.add('active');
-                
-                // Ocultar todos los formularios
-                paymentForms.forEach(form => form.classList.remove('active'));
-                // Mostrar el formulario correspondiente
-                const methodId = method.getAttribute('data-method');
-                document.getElementById(`${methodId}-form`).classList.add('active');
+    $(document).ready(function () {
+        // Tarjeta de Crédito
+        $("#pagar").click(function () {
+            var card_number = $("#card_number").val();
+            var card_name = $("#card_name").val();
+            var expiry_date = $("#expiry_date").val();
+            var cvv = $("#cvv").val();
+
+                var datos = {
+                "card_number": card_number,
+                "card_name": card_name,
+                "expiry_date": expiry_date,
+                "cvv": cvv,
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/api/pagofinal/",
+                data: datos,
+                success: function () {
+                    window.location.href = 'file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/pagoexitoso.html';
+                }
             });
         });
-        
-        
-        // Formatear fecha de expiración
-        function formatExpiryDate(input) {
-            let value = input.value.replace(/[^0-9]/g, '');
-            
-            if (value.length > 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            }
-            
-            input.value = value;
-        }
-        
-        // Event listeners para tarjeta de crédito
-        document.getElementById('card-number').addEventListener('input', function(e) {
-            formatCardNumber(e.target);
-        });
-        
-        document.getElementById('expiry-date').addEventListener('input', function(e) {
-            formatExpiryDate(e.target);
-        });
-        
-        document.getElementById('credit-pay-button').addEventListener('click', function() {
-            if (validateCreditCardForm()) {
-                alert('Pago con tarjeta de crédito procesado con éxito');
-                // Aquí iría la lógica real de procesamiento de pago
-            }
-        });
-        
-        // Event listeners para tarjeta de débito (similar a crédito)
-        document.getElementById('debit-card-number').addEventListener('input', function(e) {
-            formatCardNumber(e.target);
-        });
-        
-        document.getElementById('debit-expiry-date').addEventListener('input', function(e) {
-            formatExpiryDate(e.target);
-        });
-        
-        document.getElementById('debit-pay-button').addEventListener('click', function() {
-            if (validateCreditCardForm()) { // Misma validación para simplificar
-                alert('Pago con tarjeta de débito procesado con éxito');
-                // Aquí iría la lógica real de procesamiento de pago
-            }
-        });
-        
-        // Event listener para pago en efectivo
-        document.getElementById('cash-pay-button').addEventListener('click', function() {
-            alert('Pedido confirmado para pago en efectivo');
-            // Aquí iría la lógica para registrar el pedido con pago en efectivo
 
-              $.ajax({
-                    success: function (valor) {
-                        parent.location = "file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/menu.html";
-                    
-                    
-                    parent.location = 'pagoexitoso.html';
+        // Tarjeta de Débito
+        $("#pagado").click(function () {
+            var debit_card_number = $("#debit_card_number").val();
+            var debit_card_name = $("#debit_card_name").val();
+            var debit_expiry_date = $("#debit_expiry_date").val();
+            var debit_cvv = $("#debit_cvv").val();
 
+            var datos = {
+            "debit_card_number": debit_card_number,
+            "debit_card_name": debit_card_name,
+            "debit_expiry_date": debit_expiry_date,
+            "debit_cvv": debit_cvv,
 
-                    }
-                });
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/api/pagofinal/",
+                data: datos,
+                success: function () {
+                    window.location.href = 'file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/pagoexitoso.html';
+                }
             });
-    </script>
-</body>
-</html>
+        });
+
+        // Pago en efectivo
+        $("#pago").click(function () {
+            var datos = {
+                metodo: "efectivo"
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/api/pagofinal/",
+                data: datos,
+                success: function () {
+                    parent.location = 'file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/pagoexitoso.html';
+                }
+            });
+        });
+    });
+    // Mostrar el formulario correcto según el método seleccionado
+$(".payment-method").click(function () {
+    $(".payment-method").removeClass("active");
+    $(this).addClass("active");
+
+    var method = $(this).data("method");
+
+    $(".payment-form").removeClass("active");
+    $("#" + method + "-form").addClass("active");
+});
+
+</script>

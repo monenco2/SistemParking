@@ -125,24 +125,25 @@
             <input type="text" id="tiempo" placeholder="Tiempo que estuvo">
         </div>
         
-        <button class="btn" type="button">Valor a pagar 💰</button>
+        <button class="btn" id="pagar" type="button">Valor a pagar 💰</button>
         
         <div class="help-section">
             ¿Necesitas ayuda? Contacta a nuestro soporte
         </div>
-    </div>
 </body>
 
  <script src="js/jquery.js"></script>
     <script>
         $(document).ready(function () {
-            $("#Valor a pagar 💰").click(function(){
+            $("#pagar").click(function(){
                 var placa = $("#placa").val();
                 var tiempo = $("#tiempo").val();
+                var metodo_pago = $("#metodo_pago").val();
                 
                 var datos = {
                     "placa": placa,
                     "tiempo": tiempo,
+                    "metodo_pago": metodo_pago,
 
                 }
 

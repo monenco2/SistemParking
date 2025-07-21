@@ -137,15 +137,10 @@
         
         <div class="form-group">
             <label for="tiempo">Tiempo</label>
-            <div class="timer-container">
-                <input type="text" id="tiempo" class="timer-display" placeholder="00:00:00" readonly>
-                <div class="timer-controls">
-                    <button type="button" class="timer-btn" id="startTimer">Iniciar</button>
-                    <button type="button" class="timer-btn" id="stopTimer">Detener</button>
-                    <button type="button" class="timer-btn" id="resetTimer">Reiniciar</button>
-                </div>
-            </div>
+                 <input type="text" id="tiempo" placeholder="12h">
         </div>
+
+  
     
         <button type="button" id="Continue" class="btn">Continuar</button>
     </div>
@@ -207,7 +202,7 @@
                     type: "POST",
                     url: "http://127.0.0.1:8000/api/horaparqueo/",
                     success: function (valor) {
-                        parent.location = "file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/menu.html";
+                        parent.location = "registroexitoso.html";
                     }
                 });
             });

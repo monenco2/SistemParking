@@ -5,7 +5,7 @@ from ..usuarios.views import *
 from ..vehiculo.views import *
 from ..servicio.views import *
 from ..horaparqueo.views import *
-
+from ..pagofinal.views import *
 
 router = DefaultRouter()
 
@@ -15,5 +15,6 @@ router.register(r'horaparqueo', HoraparqueoViewset, basename='horaparqueo')
 router.register(r'servicio', ServicioViewset, basename='servicio')
 router.register(r'vehiculo', VehiculoViewset, basename='vehiculo')
 router.register(r'usuarios', UsuariosViewset, basename='usuarios')
+router.register(r'pagofinal', pagofinalViewset, basename='pagofinal')
 
 urlpatterns = router.urls
