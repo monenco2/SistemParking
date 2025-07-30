@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Sistema de Facturación</title>
+    <style>
+        :root {
+            --black: #121212;
+            --dark-gray: #1e1e1e;
+            --medium-gray: #2d2d2d;
+            --purple-dark: #4a148c;
+            --purple-medium: #7b1fa2;
+            --purple-light: #9c27b0;
+            --text-light: #e0e0e0;
+            --text-gray: #9e9e9e;
+        }
+        
+        body {
+            background-color: var(--black);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: var(--dark-gray);
+            border-radius: 10px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--purple-medium);
+        }
+        
+        .title {
+            color: var(--purple-light);
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--medium-gray);
+            border: 1px solid var(--purple-dark);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--purple-light);
+            box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.3);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--purple-medium);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            background-color: var(--purple-light);
+            transform: translateY(-2px);
+        }
+        
+        .help-section {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Facturación</h1>
+        
+        <div class="form-group">
+            <label for="metodo_pago">Método de pago</label>
+            <select id="metodo_pago">
+                <option value="">Seleccione su método de pago</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="placa">Placa</label>
+            <input type="text" id="placa" placeholder="Ingrese su placa">
+        </div>
+        
+        <div class="form-group">
+            <label for="tiempo">Tiempo</label>
+            <input type="text" id="tiempo" placeholder="Tiempo que estuvo">
+        </div>
+        
+        <button class="btn" id="pagar" type="button">Valor a pagar 💰</button>
+        
+        <div class="help-section">
+            ¿Necesitas ayuda? Contacta a nuestro soporte
+        </div>
+</body>
+
+ <script src="js/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#pagar").click(function(){
+                var placa = $("#placa").val();
+                var tiempo = $("#tiempo").val();
+                var metodo_pago = $("#metodo_pago").val();
+                
+                var datos = {
+                    "placa": placa,
+                    "tiempo": tiempo,
+                    "metodo_pago": metodo_pago,
+
+                }
+
+                $.ajax({
+                    data: datos,
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/api/facturacion/",
+                    success: function (valor) {
+                        parent.location = 'file:///C:/Users/Usuario/Documents/GitHub/SistemParking/frontend/pagofinal.html'
+                   
+                    }
+                 });
+            });
+        });
+    </script>
+</body>
+</html>
